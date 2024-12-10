@@ -37,11 +37,9 @@ public with sharing class OpportunityTriggerHandler {
         for (Contact con : conList) {
             conAccMap.put(con.AccountId, con.Id);
         }
-        System.debug('conAccMap '+ conAccMap);
         for (Opportunity oppoRec : oppoMap.keySet()) {
                 oppoRec.Primary_Contact__c = conAccMap.get(oppoRec.AccountId);
                 oppoListForUpdate.add(oppoRec);
-                System.debug('oppoRec ID '+ oppoRec.Id +' OPPO AccountID ' +oppoRec.AccountID+' oppoRec.Primary_Contact__c '+ oppoRec.Primary_Contact__c + ' conAccMap.get(oppoRec.AccountId) ' + conAccMap.get(oppoRec.AccountId));
         }
     }
 }
