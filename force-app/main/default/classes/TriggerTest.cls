@@ -401,8 +401,10 @@ public with sharing class TriggerTest {
 
         // Check that the primary contact is set correctly
         List<Opportunity> updatedOpportunities = [SELECT Primary_Contact__c, Primary_Contact__r.FirstName, Primary_Contact__r.Title FROM Opportunity WHERE Id IN :opportunitiesToInsert];
+        System.debug('updatedOpportunities '+ updatedOpportunities);
         for (Opportunity opp : updatedOpportunities) {
             System.assertNotEquals(null, opp.Primary_Contact__c, 'Primary contact was not set.');
+            System.debug('opp.Primary_Contact__c  '+ opp.Primary_Contact__c);
             System.assertEquals(opp.Primary_Contact__r.FirstName, 'Big Boss', 'Primary contact was not set correctly.');
             System.assertEquals(opp.Primary_Contact__r.Title, 'CEO', 'Primary contact was not set correctly.');
         }
